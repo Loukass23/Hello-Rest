@@ -1,13 +1,17 @@
 import React from 'react'
+import moment from 'moment'
 
 const ProjectSummary = ({ project }) => {
     //console.log(project)
+    // const style= {background: linear-gradient (rgba(20, 20, 20, .5),
+    //         rgba(20, 20, 20, .5)), url(/img/mario-bg.png)}
     return (
-        <div className="card z-depth-0 project-summary">
-            <div className="card-content grey-text text-darlen-3">
-                <span className="card-title">{project.title}</span>
-                <p>Posted By</p>
-                <p className="gery-text">24 Feb</p>
+        <div className="card z-depth-0 project-summary" >
+            <div className="card-content grey-text text-darken-3">
+                <span className="teal-text card-title">{project.title}</span>
+
+                <p>Posted By {project.authorFirstName} {project.authorLastName}</p>
+                <p className="grey-text">{moment(project.createdAt.toDate()).calendar()}</p>
             </div>
         </div>
     )

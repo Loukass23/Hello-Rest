@@ -9,13 +9,14 @@ export const createProject = (project) => {
         getFirebase,
         getFirestore
     }) => {
-        // Asc DB call
+        const profile = getState().firebase.profile
+        const authorId = getState().firebase.auth.uid
         const firestore = getFirestore();
         firestore.collection('projects').add({
             ...project,
-            authorFirstName: 'Lucas',
-            authorLastName: 'Dupias',
-            authorID: '123',
+            authorFirstName: profile.firstName,
+            authorLastName: profile.lastName,
+            authorId: authorId,
             createdAt: new Date()
         }).then(() => {
             console.log(project)

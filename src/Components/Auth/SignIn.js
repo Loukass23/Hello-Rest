@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { signIn } from '../../Store/Actions/authActions'
+import { googleSignIn } from '../../Store/Actions/authActions'
+import { Redirect } from 'react-router-dom'
 
 class SignIn extends Component {
     state = {
@@ -17,8 +19,13 @@ class SignIn extends Component {
         e.preventDefault();
         this.props.signIn(this.state)
     }
+    handleGoogleButton = (e) => {
+        e.preventDefault();
+        this.props.googleSignIn()
+    }
     render() {
-        const { authErr } = this.props
+        const { authErr, auth } = this.props
+        if (auth.uid) return <Redirect to='/' />
         return (
             <div className="container">
                 <form onSubmit={this.handleSubmit} className="white">
@@ -32,11 +39,14 @@ class SignIn extends Component {
                         <input type="password" id="password" onChange={this.handleChange} />
                     </div>
                     <div className="input-field">
-                        <button className="btn pink lighten-1 z-depth-0">LOGIN</button>
+                        <button className="btn teal lighten-1 z-depth-0">LOGIN</button>
+
                         <div className="red-text-center">
                             {authErr ? <p>{authErr}</p> : null}
                         </div>
                     </div>
+                    <button onClick={this.handleGoogleButton} className="btn teal lighten-1 z-depth-0">Google SignIn</button>
+
                 </form>
             </div>
         )
@@ -44,12 +54,15 @@ class SignIn extends Component {
 }
 const mapStateToProp = (state) => {
     return {
-        authErr: state.auth.authErr
+        authErr: state.auth.authErr,
+        auth: state.firebase.auth
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        signIn: (creds) => dispatch(signIn(creds))
+        signIn: (creds) => dispatch(signIn(creds)),
+        googleSignIn: () => dispatch(googleSignIn())
+
     }
 }
 export default connect(mapStateToProp, mapDispatchToProps)(SignIn)
