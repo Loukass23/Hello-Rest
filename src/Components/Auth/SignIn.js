@@ -27,7 +27,7 @@ class SignIn extends Component {
         const { authErr, auth } = this.props
         if (auth.uid) return <Redirect to='/' />
         return (
-            <div className="container">
+            <div className="container w-50">
                 <form onSubmit={this.handleSubmit} className="white">
                     <h5 className="grey-text text-darken-3">Sign In</h5>
                     <div className="input-field">

@@ -5,8 +5,11 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Dashboard from './Components/Dashboard/Dashboard'
 import ProjectDetails from './Components/Project/ProjectDetails'
 import SignIn from './Components/Auth/SignIn'
+import SignIn2 from './Components/Auth/SignIn2'
 import SignUp from './Components/Auth/SignUp'
 import CreateProject from './Components/Project/CreateProject'
+import Greyscale from './Components/Layout/Greyscale'
+
 
 export default class App extends Component {
   render() {

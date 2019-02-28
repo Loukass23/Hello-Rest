@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
+import ImgMediaCard from '../mediaCard/ImgMediaCard'
 
 class Dashboard extends Component {
     render() {
@@ -18,11 +19,17 @@ class Dashboard extends Component {
                         <ProjectList projects={projects} />
                     </div>
 
-                    <div className="col sm8 offset-m2">
+                    <div className="col sm8 offset-m1">
                         <Notfications notifications={notifications} />
                     </div>
+
                 </div>
+                <div className="dashboard container">
+
+                </div>
+
             </div>
+
         )
     }
 }
